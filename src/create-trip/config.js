@@ -1,0 +1,2 @@
+const GEOAPIFY_API_KEY = "f8f083b3e17f4cd291a36ff855b7f1a4";
+export default GEOAPIFY_API_KEY;
