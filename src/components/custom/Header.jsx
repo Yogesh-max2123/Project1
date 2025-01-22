@@ -20,10 +20,16 @@ import { useGoogleLogin } from "@react-oauth/google";
 function Header() {
   const [openDialogue, setOpenDialogue] = useState(false);
 
-  // Dynamically set the redirect URI based on environment (production or development)
-  const redirectUri = process.env.NODE_ENV === 'production'
-    ? 'https://ai-trip-planner1.vercel.app/auth/callback'
-    : 'http://localhost:5173/auth/callback';
+  // Dynamically set the redirect URI based on environment variables
+   const redirectUri =
+    import.meta.env.PROD?
+          import.meta.env.VITE_VERCEL_REDIRECT_URI
+       : import.meta.env.VITE_HOST_REDIRECT_URI;
+
+   
+
+  console.log("Environment:", import.meta.env.PROD ? "Production" : "Development");
+  console.log("Redirect URI:", redirectUri);
 
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
